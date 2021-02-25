@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: yellow
+spec:
+  containers:
+  - name: lemon
+    image: busybox
+    volumeMounts:
+      - mountPath: /log
+        name: log-volume
+  - name: gold
+    image: redis
+    volumeMounts:
+      - mountPath: /var/log/event-simulator 
+        name: log-volume
+  volume:
+    - name: log-volume
+      hostPath:
+        # directory location on Host
+        path: /var/log/webapp
+        type: DirectoryOrCreate
+  # volume:
+  #   - name: log-volume
+  #     awsElasticBlockStore:
+  #       volumeID: <volume-id>
+  #       fsType: ext4

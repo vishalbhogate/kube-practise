@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  containers:
+  - name: redis
+    image: redis
+    ports:
+      - containerPort: 8080
+    resources:
+      request:
+        memory: "1Gi"
+        cpu: 1
+      limits:
+        memory: "2Gi"
+        cpu: 2
+  #nodeName: node01 # Manul Schduling
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"

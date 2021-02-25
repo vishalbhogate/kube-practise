@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-busybox
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  containers:
+  - name: static-busybox
+    image: nginx
+    command: ["sleep"]
+    args: ["10"]
+    ports:
+      - containerPort: 8080
+    volume:
+      - name: app-secret-volume
+        secret:
+          secretName: app-secret
+    env:
+      - name: test
+        value: test_value
+      - name: db_password
+        valueFrom:
+          secretKeyRef:
+            name: app-secret
+            key: DB_PASSWORD
+  #nodeName: node01 # Manul Schduling
+  tolerations:
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"

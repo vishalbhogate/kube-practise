@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-log
+spec:
+  persistentVolumeReclaimPolicy: Retain #Delete Recycle
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 100Mi
+  hostPath: #not recommended for prod, can be used for local dev
+    path: /pv/log
+  # awsElasticBlockStore: #for production
+  #   volumeID: <volume-id>
+  #   fsType: ext4

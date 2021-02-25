@@ -1,0 +1,7 @@
+apiVerion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-test
+data:
+  APP_COLOR: RED
+  APP_MODE: PROD

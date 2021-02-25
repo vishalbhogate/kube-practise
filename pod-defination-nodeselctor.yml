@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  containers:
+  - name: redis
+    image: redis
+    ports:
+      - containerPort: 8080
+  nodeName: node01 # Manul Schduling
+  nodeSelector:
+    size: Large
