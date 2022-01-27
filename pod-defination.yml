@@ -3,28 +3,20 @@ kind: Pod
 metadata:
   name: static-busybox
   labels:
-    app: myapp
-    type: front-end
+    name: static-busybox
 spec:
   containers:
   - name: static-busybox
-    image: nginx
-    command: ["sleep"]
-    args: ["10"]
+    image: nginx:alpine
     ports:
-      - containerPort: 8080
-    volume:
-      - name: app-secret-volume
-        secret:
-          secretName: app-secret
-    env:
-      - name: test
-        value: test_value
-      - name: db_password
-        valueFrom:
-          secretKeyRef:
-            name: app-secret
-            key: DB_PASSWORD
+      - containerPort: 80
+    resources:
+      limits:
+        memory: 512Mi
+        cpu: "1"
+      requests:
+        memory: 256Mi
+        cpu: "0.2"
   #nodeName: node01 # Manul Schduling
   tolerations:
   - key: "app"

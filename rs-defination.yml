@@ -12,6 +12,7 @@ spec:
       labels:
         app: myapp
         type: front-end
+        tier: frontend
     spec:
       containers:
         - name: nginx-controller
@@ -20,3 +21,5 @@ spec:
   selector:
     matchLabels:
       type: front-end
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}

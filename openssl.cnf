@@ -8,4 +8,4 @@ subjectAltNames = @alt_namesa
 DNS.1 = kubernetes
 DNS.2 = kubernetes.default
 DNS.3 = kubernetes.default.svc
-DNS.4 =kubernetes.default.svc.cluster.local
+DNS.4 = kubernetes.default.svc.cluster.local
